@@ -42,7 +42,7 @@ class Login extends Component {
               type="text"
               id="email"
               name="name"
-              data-testid="input-player-email"
+              data-testid="input-gravatar-email"
               onChange={ ({ target }) => {
                 this.setState({ email: target.value }, this.verifyLogin);
               } }
