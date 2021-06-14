@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getTokenAPI } from '../action';
 
 class Login extends Component {
   constructor() {
@@ -20,6 +23,7 @@ class Login extends Component {
 
   render() {
     const { btnEnable } = this.state;
+    const { getTokenData } = this.props;
 
     return (
       <section>
@@ -42,23 +46,34 @@ class Login extends Component {
               type="text"
               id="email"
               name="name"
-              data-testid="input-player-email"
+              data-testid="input-gravatar-email"
               onChange={ ({ target }) => {
                 this.setState({ email: target.value }, this.verifyLogin);
               } }
             />
           </label>
+
           <button
             type="button"
             disabled={ btnEnable }
             data-testid="btn-play"
+            onClick={ () => getTokenData() }
           >
             Jogar
           </button>
+
         </form>
       </section>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  getTokenData: () => dispatch(getTokenAPI()),
+});
+
+Login.propTypes = {
+  getTokenData: PropTypes.func,
+}.isRequired;
+
+export default connect(null, mapDispatchToProps)(Login);
