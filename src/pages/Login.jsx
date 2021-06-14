@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { getTokenAPI } from '../action';
 
 class Login extends Component {
@@ -10,6 +11,7 @@ class Login extends Component {
       name: '',
       email: '',
       btnEnable: true,
+      login: false,
     };
     this.verifyLogin = this.verifyLogin.bind(this);
   }
@@ -21,10 +23,16 @@ class Login extends Component {
     }
   }
 
-  render() {
-    const { btnEnable } = this.state;
-    const { getTokenData } = this.props;
+  redirectToGame() {
+    this.setState({ login: true });
+  }
 
+  render() {
+    const { btnEnable, login } = this.state;
+    const { getTokenData } = this.props;
+    if (login) {
+      return <Redirect to="/trivia" />;
+    }
     return (
       <section>
         <form>
@@ -57,7 +65,10 @@ class Login extends Component {
             type="button"
             disabled={ btnEnable }
             data-testid="btn-play"
-            onClick={ () => getTokenData() }
+            onClick={ () => {
+              getTokenData();
+              this.redirectToGame();
+            } }
           >
             Jogar
           </button>

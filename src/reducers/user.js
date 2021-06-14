@@ -3,7 +3,7 @@ import { GET_TOKEN } from '../action';
 const INITIAL_STATE = {
   email: '',
   userName: '',
-  token: '',
+  token: 'padrao',
 };
 
 function user(state = INITIAL_STATE, { type, payload }) {

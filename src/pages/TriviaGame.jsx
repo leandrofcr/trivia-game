@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 class TriviaGame extends Component {
   render() {
+    const userToken = localStorage.getItem('token');
     return (
       <div>
-        <p>Welcome!</p>
+        <p>{userToken}</p>
       </div>
     );
   }
