@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getPLayerInfo, getTokenAPI } from '../action';
+import { getPLayerInfo, getQuestionsAPI, getTokenAPI } from '../action';
 
 class Login extends Component {
   constructor() {
@@ -35,7 +35,7 @@ class Login extends Component {
 
   render() {
     const { btnEnable, login } = this.state;
-    const { getTokenData } = this.props;
+    const { getTokenData, getAssertions } = this.props;
     if (login) {
       return <Redirect to="/trivia" />;
     }
@@ -59,20 +59,20 @@ class Login extends Component {
             <input
               type="text"
               id="email"
-              name="name"
+              name="email"
               data-testid="input-gravatar-email"
               onChange={ ({ target }) => {
                 this.setState({ gravatarEmail: target.value }, this.verifyLogin);
               } }
             />
           </label>
-
           <button
             type="button"
             disabled={ btnEnable }
             data-testid="btn-play"
             onClick={ () => {
               getTokenData();
+              getAssertions();
               this.redirectToGame();
             } }
           >
@@ -88,6 +88,7 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => ({
   getTokenData: () => dispatch(getTokenAPI()),
   savePlayerInfo: (value) => dispatch(getPLayerInfo(value)),
+  getAssertions: () => dispatch(getQuestionsAPI()),
 });
 
 Login.propTypes = {
