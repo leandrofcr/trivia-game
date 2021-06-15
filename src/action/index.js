@@ -25,13 +25,8 @@ export const getQuetions = (payload) => ({
 export const getTokenAPI = () => async (dispatch) => {
   const response = await fetchToken();
   localStorage.setItem('token', response.token);
+  dispatch(getToken(response));
 
-  return dispatch(getToken(response));
-};
-
-export const getQuestionsAPI = () => async (dispatch) => {
-  const token = localStorage.getItem('token');
-  const response = await fetchQuestions(NUM_OF_QUESTIONS, token);
-
-  return dispatch(getQuetions(response));
+  const questions = await fetchQuestions(NUM_OF_QUESTIONS, response.token);
+  dispatch(getQuetions(questions));
 };
