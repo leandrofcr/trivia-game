@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getTokenAPI } from '../action';
+import { getPLayerInfo, getTokenAPI } from '../action';
 
 class Login extends Component {
   constructor() {
@@ -14,6 +14,12 @@ class Login extends Component {
       login: false,
     };
     this.verifyLogin = this.verifyLogin.bind(this);
+  }
+
+  componentWillUnmount() {
+    const { savePlayerInfo } = this.props;
+    const { name, gravatarEmail } = this.state;
+    savePlayerInfo({ name, gravatarEmail });
   }
 
   verifyLogin() {
@@ -81,6 +87,7 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   getTokenData: () => dispatch(getTokenAPI()),
+  savePlayerInfo: (value) => dispatch(getPLayerInfo(value)),
 });
 
 Login.propTypes = {
