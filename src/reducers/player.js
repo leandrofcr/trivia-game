@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   token: '',
   score: 0,
   assertions: [],
-  renderQuestions: false,
+  isQuestions: false,
 };
 
 function player(state = INITIAL_STATE, { type, payload }) {
@@ -16,7 +16,7 @@ function player(state = INITIAL_STATE, { type, payload }) {
   case GET_PLAYER_INFO:
     return { ...state, name: payload.name, gravatarEmail: payload.gravatarEmail };
   case GET_QUESTIONS:
-    return { ...state, assertions: payload.results, renderQuestions: true };
+    return { ...state, assertions: payload.results, isQuestions: true };
   default:
     return state;
   }

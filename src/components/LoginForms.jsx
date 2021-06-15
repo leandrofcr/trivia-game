@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getPLayerInfo, getQuestionsAPI, getTokenAPI } from '../action';
+import { getPLayerInfo, getTokenAPI } from '../action';
 
 class Login extends Component {
   constructor() {
@@ -35,8 +35,8 @@ class Login extends Component {
 
   render() {
     const { btnEnable, login } = this.state;
-    const { getTokenData, getAssertions } = this.props;
-    if (login) {
+    const { getTokenData, isQuestions } = this.props;
+    if (login && isQuestions) {
       return <Redirect to="/trivia" />;
     }
     return (
@@ -72,7 +72,6 @@ class Login extends Component {
             data-testid="btn-play"
             onClick={ () => {
               getTokenData();
-              getAssertions();
               this.redirectToGame();
             } }
           >
@@ -88,11 +87,14 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => ({
   getTokenData: () => dispatch(getTokenAPI()),
   savePlayerInfo: (value) => dispatch(getPLayerInfo(value)),
-  getAssertions: () => dispatch(getQuestionsAPI()),
+});
+
+const mapStateToProps = (state) => ({
+  isQuestions: state.player.isQuestions,
 });
 
 Login.propTypes = {
   getTokenData: PropTypes.func,
 }.isRequired;
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
