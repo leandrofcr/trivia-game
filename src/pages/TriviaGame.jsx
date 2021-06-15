@@ -17,10 +17,7 @@ class TriviaGame extends Component {
     }
 
     return (
-      <>
-        <Header />
-        <p>Welcome!</p>
-      </>
+      <Header />
     );
   }
 }
