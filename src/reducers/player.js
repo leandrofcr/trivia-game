@@ -1,9 +1,10 @@
 import { GET_PLAYER_INFO, GET_TOKEN } from '../action';
 
 const INITIAL_STATE = {
-  gravatarEmail: '',
   name: '',
+  gravatarEmail: '',
   token: 'padrao',
+  score: 0,
 };
 
 function player(state = INITIAL_STATE, { type, payload }) {
