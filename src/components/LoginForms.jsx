@@ -9,7 +9,7 @@ class Login extends Component {
     super();
     this.state = {
       name: '',
-      email: '',
+      gravatarEmail: '',
       btnEnable: true,
       login: false,
     };
@@ -17,8 +17,8 @@ class Login extends Component {
   }
 
   verifyLogin() {
-    const { name, email } = this.state;
-    if (name.length > 0 && email.length > 0) {
+    const { name, gravatarEmail } = this.state;
+    if (name.length > 0 && gravatarEmail.length > 0) {
       this.setState({ btnEnable: false });
     }
   }
@@ -56,7 +56,7 @@ class Login extends Component {
               name="name"
               data-testid="input-gravatar-email"
               onChange={ ({ target }) => {
-                this.setState({ email: target.value }, this.verifyLogin);
+                this.setState({ gravatarEmail: target.value }, this.verifyLogin);
               } }
             />
           </label>
