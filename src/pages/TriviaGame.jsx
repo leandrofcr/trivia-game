@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import Header from '../components/Header';
 
 class TriviaGame extends Component {
   constructor() {
@@ -16,9 +17,10 @@ class TriviaGame extends Component {
     }
 
     return (
-      <div>
+      <>
+        <Header />
         <p>Welcome!</p>
-      </div>
+      </>
     );
   }
 }
