@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 class TriviaGame extends Component {
+  constructor() {
+    super();
+    this.state = {
+      redirectSettings: false,
+    };
+  }
+
   render() {
-    const userToken = localStorage.getItem('token');
+    const { redirectSettings } = this.state;
+    if (redirectSettings) {
+      return <Redirect to="settings" />;
+    }
+
     return (
       <div>
-        <p>{userToken}</p>
+        <p>Welcome!</p>
       </div>
     );
   }
