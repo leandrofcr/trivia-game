@@ -9,7 +9,7 @@ class Timer extends Component {
   constructor() {
     super();
     this.state = {
-      seconds: 30,
+      seconds: 10,
     };
     this.starTimer = this.starTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
@@ -33,12 +33,13 @@ class Timer extends Component {
   }
 
   render() {
-    const { disableButtons, updateSeconds } = this.props;
+    const { disableButtons, updateSeconds, wasAnswered } = this.props;
     const { seconds } = this.state;
-    if (seconds < 1) {
+    if (seconds < 1 || wasAnswered) {
       this.stopTimer();
       disableButtons();
     }
+    console.log(wasAnswered);
 
     updateSeconds(seconds);
 
