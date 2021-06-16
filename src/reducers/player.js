@@ -4,6 +4,7 @@ import {
   GET_TOKEN,
   UPDATE_SCORE,
   UPDATE_TIME,
+  UPDATE_ASSERTIONS,
 } from '../action';
 
 const INITIAL_STATE = {
@@ -29,6 +30,8 @@ function player(state = INITIAL_STATE, { type, payload }) {
     return { ...state, timeLeft: payload };
   case UPDATE_SCORE:
     return { ...state, score: payload };
+  case UPDATE_ASSERTIONS:
+    return { ...state, assertions: [...state.assertions, payload] };
   default:
     return state;
   }

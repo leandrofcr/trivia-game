@@ -6,6 +6,7 @@ export const GET_PLAYER_INFO = 'GET_PLAYER_INFO';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const UPDATE_TIME = 'UPDATE_TIME';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const UPDATE_ASSERTIONS = 'UPDATE_ASSERTIONS';
 
 const NUM_OF_QUESTIONS = 5;
 
@@ -31,6 +32,11 @@ export const updateTime = (payload) => ({
 
 export const updateScore = (payload) => ({
   type: UPDATE_SCORE,
+  payload,
+});
+
+export const updateAssertions = (payload) => ({
+  type: UPDATE_ASSERTIONS,
   payload,
 });
 

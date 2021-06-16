@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import './App.css';
-import { TriviaGame, Settings, Login } from './pages';
-import FeedBack from './pages/FeedBack';
+import { TriviaGame, Settings, Login, FeedBack } from './pages';
 
 export default function App() {
   return (
