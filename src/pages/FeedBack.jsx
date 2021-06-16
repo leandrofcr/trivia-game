@@ -6,7 +6,7 @@ import Header from '../components/Header';
 
 class FeedBack extends Component {
   render() {
-    const { score } = this.props;
+    const { score, assertions } = this.props;
 
     const magicNumber = 3;
     return (
@@ -18,6 +18,8 @@ class FeedBack extends Component {
             ? <span data-testid="feedback-text">Mandou bem!</span>
             : <span data-testid="feedback-text">Podia ser melhor...</span>
         }
+        <span>{`Você acertou ${assertions.length} questões!`}</span>
+        <span>{`Um total de ${score} pontos`}</span>
       </section>
     );
   }
@@ -25,10 +27,12 @@ class FeedBack extends Component {
 
 const mapStateToProps = (state) => ({
   score: state.player.score,
+  assertions: state.player.assertions,
 });
 
 FeedBack.propTypes = {
   score: PropTypes.number.isRequired,
+  assertions: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default connect(mapStateToProps)(FeedBack);
