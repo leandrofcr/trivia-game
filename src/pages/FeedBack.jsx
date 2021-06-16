@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import Header from '../components/Header';
 
 class FeedBack extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      questions: 3,
-    };
-  }
-
   render() {
-    const { questions } = this.state;
+    const { score } = this.props;
+
     const magicNumber = 3;
     return (
       <section>
         <Header />
         <h1>HELLO MY FRIENDS!!!!</h1>
         {
-          questions >= magicNumber
+          score >= magicNumber
             ? <span data-testid="feedback-text">Mandou bem!</span>
             : <span data-testid="feedback-text">Podia ser melhor...</span>
         }
@@ -27,4 +23,12 @@ class FeedBack extends Component {
   }
 }
 
-export default FeedBack;
+const mapStateToProps = (state) => ({
+  score: state.player.score,
+});
+
+FeedBack.propTypes = {
+  score: PropTypes.number.isRequired,
+};
+
+export default connect(mapStateToProps)(FeedBack);
