@@ -48,21 +48,22 @@ class TriviaGame extends Component {
   }
 
   render() {
-    const { assertions, timeLeft } = this.props;
-    const { wasAnswered, isDisable } = this.state;
+    const { questions, timeLeft } = this.props;
+    const { wasAnswered } = this.state;
+    let { isDisable } = this.state;
 
     const correctAnswer = wasAnswered && 'correct-answer';
     const wrongAnswer = wasAnswered && 'wrong-answer';
-
+    isDisable = wasAnswered;
     return (
       <>
         <Header />
         <section>
           <p data-testid="question-category">
-            {assertions[0].category}
+            {questions[0].category}
           </p>
           <p data-testid="question-text">
-            {assertions[0].question}
+            {questions[0].question}
           </p>
           <button
             type="button"
@@ -71,12 +72,12 @@ class TriviaGame extends Component {
             disabled={ isDisable }
             onClick={ () => {
               this.showColoredBorders();
-              this.sumScore(timeLeft, assertions[0].difficulty);
+              this.sumScore(timeLeft, questions[0].difficulty);
             } }
           >
-            {assertions[0].correct_answer}
+            {questions[0].correct_answer}
           </button>
-          {assertions[0].incorrect_answers.map((elem, index) => (
+          {questions[0].incorrect_answers.map((elem, index) => (
             <button
               type="button"
               className={ wrongAnswer }
@@ -89,13 +90,15 @@ class TriviaGame extends Component {
             </button>
           ))}
         </section>
-        <Timer disableButtons={ this.disableButtons } />
+        {!wasAnswered && <Timer disableButtons={ this.disableButtons } />}
+        {wasAnswered && <button type="button" data-testid="btn-next">Próxima</button>}
+
       </>
     );
   }
 }
 const mapStateToProps = (state) => ({
-  assertions: state.player.assertions,
+  questions: state.player.questions,
   renderQuestions: state.player.renderQuestions,
   timeLeft: state.player.timeLeft,
 });

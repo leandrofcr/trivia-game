@@ -45,6 +45,7 @@ export const getTokenAPI = () => async (dispatch) => {
   const playerData = {
     player: {
       score: 0,
+      assertions: [],
     },
   };
   localStorage.setItem('state', JSON.stringify(playerData));
