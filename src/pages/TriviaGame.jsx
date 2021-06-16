@@ -18,12 +18,18 @@ class TriviaGame extends Component {
             {assertions[0].question}
           </p>
 
-          <p data-testid="correct-answer">
+          <button type="button" data-testid="correct-answer">
             {assertions[0].correct_answer}
-          </p>
+          </button>
 
           {assertions[0].incorrect_answers.map((elem, index) => (
-            <p key={ index } data-testid={ `wrong-answer-${index}` }>{elem}</p>
+            <button
+              type="button"
+              key={ index }
+              data-testid={ `wrong-answer-${index}` }
+            >
+              {elem}
+            </button>
           ))}
 
         </section>
