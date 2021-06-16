@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
 import { updateScore } from '../action';
 
+const FOUR = 4;
 const TEN = 10;
 const difficultyScore = {
   hard: 3,
@@ -18,6 +20,7 @@ class TriviaGame extends Component {
     this.state = {
       wasAnswered: false,
       isDisable: false,
+      questionIndex: 0,
     };
     this.showColoredBorders = this.showColoredBorders.bind(this);
     this.disableButtons = this.disableButtons.bind(this);
@@ -47,51 +50,81 @@ class TriviaGame extends Component {
     uptadePlayerScore(currScore);
   }
 
-  render() {
+  renderBtnCorrectAnswer() {
     const { questions, timeLeft } = this.props;
-    const { wasAnswered } = this.state;
-    let { isDisable } = this.state;
-
+    const { isDisable, wasAnswered, questionIndex } = this.state;
     const correctAnswer = wasAnswered && 'correct-answer';
+    return (
+      <button
+        type="button"
+        className={ correctAnswer }
+        data-testid="correct-answer"
+        disabled={ isDisable }
+        onClick={ () => {
+          this.showColoredBorders();
+          this.sumScore(timeLeft, questions[questionIndex].difficulty);
+        } }
+      >
+        {questions[questionIndex].correct_answer}
+      </button>);
+  }
+
+  renderBtnWrongAnswer() {
+    const { questions } = this.props;
+    const { isDisable, wasAnswered, questionIndex } = this.state;
     const wrongAnswer = wasAnswered && 'wrong-answer';
-    isDisable = wasAnswered;
+
+    return questions[questionIndex].incorrect_answers.map((elem, index) => (
+      <button
+        type="button"
+        className={ wrongAnswer }
+        key={ index }
+        disabled={ isDisable }
+        data-testid={ `wrong-answer-${index}` }
+        onClick={ () => this.showColoredBorders() }
+      >
+        {elem}
+      </button>
+    ));
+  }
+
+  render() {
+    const { questions } = this.props;
+    const { wasAnswered, questionIndex } = this.state;
+    if (questionIndex > FOUR) {
+      return <Redirect to="/feedback" />;
+    }
+
     return (
       <>
         <Header />
         <section>
           <p data-testid="question-category">
-            {questions[0].category}
+            {questions[questionIndex].category}
           </p>
           <p data-testid="question-text">
-            {questions[0].question}
+            {questions[questionIndex].question}
           </p>
+
+          {this.renderBtnCorrectAnswer()}
+
+          {this.renderBtnWrongAnswer()}
+        </section>
+        {!wasAnswered && <Timer
+          disableButtons={ this.disableButtons }
+          wasAnswered={ wasAnswered }
+        />}
+        {wasAnswered && (
           <button
             type="button"
-            className={ correctAnswer }
-            data-testid="correct-answer"
-            disabled={ isDisable }
-            onClick={ () => {
-              this.showColoredBorders();
-              this.sumScore(timeLeft, questions[0].difficulty);
-            } }
+            data-testid="btn-next"
+            onClick={ () => this.setState((prevState) => ({
+              questionIndex: prevState.questionIndex + 1,
+              wasAnswered: false,
+            })) }
           >
-            {questions[0].correct_answer}
-          </button>
-          {questions[0].incorrect_answers.map((elem, index) => (
-            <button
-              type="button"
-              className={ wrongAnswer }
-              key={ index }
-              disabled={ isDisable }
-              data-testid={ `wrong-answer-${index}` }
-              onClick={ () => this.showColoredBorders() }
-            >
-              {elem}
-            </button>
-          ))}
-        </section>
-        {!wasAnswered && <Timer disableButtons={ this.disableButtons } />}
-        {wasAnswered && <button type="button" data-testid="btn-next">Próxima</button>}
+            Próxima
+          </button>)}
 
       </>
     );
