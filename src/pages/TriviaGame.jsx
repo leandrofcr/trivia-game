@@ -34,8 +34,8 @@ class TriviaGame extends Component {
 
   sumScore(secs, diff) {
     const { uptadePlayerScore } = this.props;
-    const currData = JSON.parse(localStorage.getItem('state'));
-    const amountScore = currData.player.score;
+    const getStorage = JSON.parse(localStorage.getItem('state'));
+    const amountScore = getStorage.player.score;
 
     const currScore = amountScore + TEN + (secs * difficultyScore[diff]);
     const playerData = {
@@ -50,13 +50,13 @@ class TriviaGame extends Component {
   render() {
     const { assertions, timeLeft } = this.props;
     const { wasAnswered, isDisable } = this.state;
+
     const correctAnswer = wasAnswered && 'correct-answer';
     const wrongAnswer = wasAnswered && 'wrong-answer';
 
     return (
       <>
         <Header />
-
         <section>
           <p data-testid="question-category">
             {assertions[0].category}
@@ -76,7 +76,6 @@ class TriviaGame extends Component {
           >
             {assertions[0].correct_answer}
           </button>
-
           {assertions[0].incorrect_answers.map((elem, index) => (
             <button
               type="button"
@@ -89,12 +88,9 @@ class TriviaGame extends Component {
               {elem}
             </button>
           ))}
-
         </section>
         <Timer disableButtons={ this.disableButtons } />
-
       </>
-
     );
   }
 }
