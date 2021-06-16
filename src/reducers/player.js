@@ -1,10 +1,12 @@
-import { GET_PLAYER_INFO, GET_TOKEN } from '../action';
+import { GET_PLAYER_INFO, GET_QUESTIONS, GET_TOKEN } from '../action';
 
 const INITIAL_STATE = {
   name: '',
   gravatarEmail: '',
-  token: 'padrao',
+  token: '',
   score: 0,
+  assertions: [],
+  isQuestions: false,
 };
 
 function player(state = INITIAL_STATE, { type, payload }) {
@@ -13,6 +15,8 @@ function player(state = INITIAL_STATE, { type, payload }) {
     return { ...state, token: payload.token };
   case GET_PLAYER_INFO:
     return { ...state, name: payload.name, gravatarEmail: payload.gravatarEmail };
+  case GET_QUESTIONS:
+    return { ...state, assertions: payload.results, isQuestions: true };
   default:
     return state;
   }

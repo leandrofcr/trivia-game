@@ -35,8 +35,8 @@ class Login extends Component {
 
   render() {
     const { btnEnable, login } = this.state;
-    const { getTokenData } = this.props;
-    if (login) {
+    const { getTokenData, isQuestions } = this.props;
+    if (login && isQuestions) {
       return <Redirect to="/trivia" />;
     }
     return (
@@ -59,14 +59,13 @@ class Login extends Component {
             <input
               type="text"
               id="email"
-              name="name"
+              name="email"
               data-testid="input-gravatar-email"
               onChange={ ({ target }) => {
                 this.setState({ gravatarEmail: target.value }, this.verifyLogin);
               } }
             />
           </label>
-
           <button
             type="button"
             disabled={ btnEnable }
@@ -90,8 +89,12 @@ const mapDispatchToProps = (dispatch) => ({
   savePlayerInfo: (value) => dispatch(getPLayerInfo(value)),
 });
 
+const mapStateToProps = (state) => ({
+  isQuestions: state.player.isQuestions,
+});
+
 Login.propTypes = {
   getTokenData: PropTypes.func,
 }.isRequired;
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
