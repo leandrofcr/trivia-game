@@ -12,18 +12,30 @@ class FeedBack extends Component {
     return (
       <section>
         <Header />
-        <h1>HELLO MY FRIENDS!!!!</h1>
-        {
-          score >= magicNumber
-            ? <span data-testid="feedback-text">Mandou bem!</span>
-            : <span data-testid="feedback-text">Podia ser melhor...</span>
-        }
-        <span data-testid="feedback-total-question">
-          {`Você acertou ${assertions.length} questões!`}
-        </span>
-        <span data-testid="feedback-total-score">
-          {`Um total de ${score} pontos`}
-        </span>
+        <section>
+          {
+            score >= magicNumber
+              ? <span data-testid="feedback-text">Mandou bem!</span>
+              : <span data-testid="feedback-text">Podia ser melhor...</span>
+          }
+        </section>
+        <section>
+          <span data-testid="feedback-total-question">
+            {`Você acertou ${assertions.length} questões!`}
+          </span>
+        </section>
+        <section>
+          <span data-testid="feedback-total-score">
+            {`Um total de ${score} pontos`}
+          </span>
+        </section>
+        <button
+          type="button"
+          data-testid="btn-play-again"
+          onClick={ () => {} }
+        >
+          Jogar novamente
+        </button>
       </section>
     );
   }
