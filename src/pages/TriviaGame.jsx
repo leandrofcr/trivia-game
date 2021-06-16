@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
+import { updateScore } from '../action';
+
+const TEN = 10;
+const difficultyScore = {
+  hard: 3,
+  medium: 2,
+  easy: 1,
+};
 
 class TriviaGame extends Component {
   constructor() {
@@ -13,6 +21,7 @@ class TriviaGame extends Component {
     };
     this.showColoredBorders = this.showColoredBorders.bind(this);
     this.disableButtons = this.disableButtons.bind(this);
+    this.sumScore = this.sumScore.bind(this);
   }
 
   showColoredBorders() {
@@ -23,16 +32,31 @@ class TriviaGame extends Component {
     this.setState({ isDisable: true });
   }
 
+  sumScore(secs, diff) {
+    const { uptadePlayerScore } = this.props;
+    const getStorage = JSON.parse(localStorage.getItem('state'));
+    const amountScore = getStorage.player.score;
+
+    const currScore = amountScore + TEN + (secs * difficultyScore[diff]);
+    const playerData = {
+      player: {
+        score: currScore,
+      },
+    };
+    localStorage.setItem('state', JSON.stringify(playerData));
+    uptadePlayerScore(currScore);
+  }
+
   render() {
-    const { assertions } = this.props;
+    const { assertions, timeLeft } = this.props;
     const { wasAnswered, isDisable } = this.state;
+
     const correctAnswer = wasAnswered && 'correct-answer';
     const wrongAnswer = wasAnswered && 'wrong-answer';
 
     return (
       <>
         <Header />
-
         <section>
           <p data-testid="question-category">
             {assertions[0].category}
@@ -40,17 +64,18 @@ class TriviaGame extends Component {
           <p data-testid="question-text">
             {assertions[0].question}
           </p>
-
           <button
             type="button"
             className={ correctAnswer }
             data-testid="correct-answer"
             disabled={ isDisable }
-            onClick={ () => this.showColoredBorders() }
+            onClick={ () => {
+              this.showColoredBorders();
+              this.sumScore(timeLeft, assertions[0].difficulty);
+            } }
           >
             {assertions[0].correct_answer}
           </button>
-
           {assertions[0].incorrect_answers.map((elem, index) => (
             <button
               type="button"
@@ -63,23 +88,26 @@ class TriviaGame extends Component {
               {elem}
             </button>
           ))}
-
         </section>
         <Timer disableButtons={ this.disableButtons } />
-
       </>
-
     );
   }
 }
 const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
   renderQuestions: state.player.renderQuestions,
+  timeLeft: state.player.timeLeft,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  uptadePlayerScore: (value) => dispatch(updateScore(value)),
 });
 
 TriviaGame.propTypes = {
   getAssertions: PropTypes.func,
+  uptadePlayerScore: PropTypes.func,
   assertions: PropTypes.arryOf,
 }.isRequired;
 
-export default connect(mapStateToProps)(TriviaGame);
+export default connect(mapStateToProps, mapDispatchToProps)(TriviaGame);

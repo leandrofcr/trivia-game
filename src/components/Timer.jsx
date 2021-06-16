@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { updateTime } from '../action';
 
 const ONE_SECONDS = 1000;
 
@@ -31,12 +33,14 @@ class Timer extends Component {
   }
 
   render() {
-    const { disableButtons } = this.props;
+    const { disableButtons, updateSeconds } = this.props;
     const { seconds } = this.state;
     if (seconds < 1) {
       this.stopTimer();
       disableButtons();
     }
+
+    updateSeconds(seconds);
 
     return (
       <p>
@@ -49,8 +53,13 @@ class Timer extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  updateSeconds: (value) => dispatch(updateTime(value)),
+});
+
 Timer.propTypes = {
   disableButtons: PropTypes.boolean,
+  updateSeconds: PropTypes.func,
 }.isRequired;
 
-export default Timer;
+export default connect(null, mapDispatchToProps)(Timer);
