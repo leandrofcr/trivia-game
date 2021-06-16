@@ -2,22 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import Timer from '../components/Timer';
 
 class TriviaGame extends Component {
   constructor() {
     super();
     this.state = {
       wasAnswered: false,
+      isDisable: false,
     };
+    this.showColoredBorders = this.showColoredBorders.bind(this);
+    this.disableButtons = this.disableButtons.bind(this);
   }
 
   showColoredBorders() {
     this.setState({ wasAnswered: true });
   }
 
+  disableButtons() {
+    this.setState({ isDisable: true });
+  }
+
   render() {
     const { assertions } = this.props;
-    const { wasAnswered } = this.state;
+    const { wasAnswered, isDisable } = this.state;
     const correctAnswer = wasAnswered && 'correct-answer';
     const wrongAnswer = wasAnswered && 'wrong-answer';
 
@@ -37,6 +45,7 @@ class TriviaGame extends Component {
             type="button"
             className={ correctAnswer }
             data-testid="correct-answer"
+            disabled={ isDisable }
             onClick={ () => this.showColoredBorders() }
           >
             {assertions[0].correct_answer}
@@ -47,6 +56,7 @@ class TriviaGame extends Component {
               type="button"
               className={ wrongAnswer }
               key={ index }
+              disabled={ isDisable }
               data-testid={ `wrong-answer-${index}` }
               onClick={ () => this.showColoredBorders() }
             >
@@ -55,6 +65,7 @@ class TriviaGame extends Component {
           ))}
 
         </section>
+        <Timer disableButtons={ this.disableButtons } />
 
       </>
 
