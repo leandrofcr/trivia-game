@@ -4,8 +4,23 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 class TriviaGame extends Component {
+  constructor() {
+    super();
+    this.state = {
+      wasAnswered: false,
+    };
+  }
+
+  showColoredBorders() {
+    this.setState({ wasAnswered: true });
+  }
+
   render() {
     const { assertions } = this.props;
+    const { wasAnswered } = this.state;
+    const correctAnswer = wasAnswered && 'correct-answer';
+    const wrongAnswer = wasAnswered && 'wrong-answer';
+
     return (
       <>
         <Header />
@@ -18,15 +33,22 @@ class TriviaGame extends Component {
             {assertions[0].question}
           </p>
 
-          <button type="button" data-testid="correct-answer">
+          <button
+            type="button"
+            className={ correctAnswer }
+            data-testid="correct-answer"
+            onClick={ () => this.showColoredBorders() }
+          >
             {assertions[0].correct_answer}
           </button>
 
           {assertions[0].incorrect_answers.map((elem, index) => (
             <button
               type="button"
+              className={ wrongAnswer }
               key={ index }
               data-testid={ `wrong-answer-${index}` }
+              onClick={ () => this.showColoredBorders() }
             >
               {elem}
             </button>
