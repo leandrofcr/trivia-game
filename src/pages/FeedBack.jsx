@@ -18,8 +18,12 @@ class FeedBack extends Component {
             ? <span data-testid="feedback-text">Mandou bem!</span>
             : <span data-testid="feedback-text">Podia ser melhor...</span>
         }
-        <span>{`Você acertou ${assertions.length} questões!`}</span>
-        <span>{`Um total de ${score} pontos`}</span>
+        <span data-testid="feedback-total-question">
+          {`Você acertou ${assertions.length} questões!`}
+        </span>
+        <span data-testid="feedback-total-score">
+          {`Um total de ${score} pontos`}
+        </span>
       </section>
     );
   }
