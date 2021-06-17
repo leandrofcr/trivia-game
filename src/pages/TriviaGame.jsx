@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
-import { updateScore } from '../action';
+import { updateAssertions, updateScore } from '../action';
 
 const FOUR = 4;
 const TEN = 10;
@@ -27,6 +27,17 @@ class TriviaGame extends Component {
     this.sumScore = this.sumScore.bind(this);
   }
 
+  componentDidUpdate() {
+    const { assertions, score } = this.props;
+    const playerData = {
+      player: {
+        score,
+        assertions,
+      },
+    };
+    localStorage.setItem('state', JSON.stringify(playerData));
+  }
+
   showColoredBorders() {
     this.setState({ wasAnswered: true });
   }
@@ -41,19 +52,15 @@ class TriviaGame extends Component {
     const amountScore = getStorage.player.score;
 
     const currScore = amountScore + TEN + (secs * difficultyScore[diff]);
-    const playerData = {
-      player: {
-        score: currScore,
-      },
-    };
-    localStorage.setItem('state', JSON.stringify(playerData));
+
     uptadePlayerScore(currScore);
   }
 
   renderBtnCorrectAnswer() {
-    const { questions, timeLeft } = this.props;
+    const { questions, timeLeft, updatePlayerAssertions } = this.props;
     const { isDisable, wasAnswered, questionIndex } = this.state;
     const correctAnswer = wasAnswered && 'correct-answer';
+
     return (
       <button
         type="button"
@@ -63,6 +70,7 @@ class TriviaGame extends Component {
         onClick={ () => {
           this.showColoredBorders();
           this.sumScore(timeLeft, questions[questionIndex].difficulty);
+          updatePlayerAssertions(1);
         } }
       >
         {questions[questionIndex].correct_answer}
@@ -89,9 +97,17 @@ class TriviaGame extends Component {
   }
 
   render() {
-    const { questions } = this.props;
+    const { questions, score, name, urlAvatar, gravatarEmail } = this.props;
     const { wasAnswered, questionIndex } = this.state;
     if (questionIndex > FOUR) {
+      const ranking = JSON.parse(localStorage.getItem('ranking'));
+      ranking.push({
+        name,
+        score,
+        picture: urlAvatar,
+        gravatarEmail,
+      });
+      localStorage.setItem('ranking', JSON.stringify(ranking));
       return <Redirect to="/feedback" />;
     }
 
@@ -134,16 +150,22 @@ const mapStateToProps = (state) => ({
   questions: state.player.questions,
   renderQuestions: state.player.renderQuestions,
   timeLeft: state.player.timeLeft,
+  assertions: state.player.assertions,
+  score: state.player.score,
+  name: state.player.name,
+  urlAvatar: state.player.urlAvatar,
+  gravatarEmail: state.player.gravatarEmail,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   uptadePlayerScore: (value) => dispatch(updateScore(value)),
+  updatePlayerAssertions: (payload) => dispatch(updateAssertions(payload)),
 });
 
 TriviaGame.propTypes = {
   getAssertions: PropTypes.func,
   uptadePlayerScore: PropTypes.func,
-  assertions: PropTypes.arryOf,
+  assertions: PropTypes.number,
 }.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(TriviaGame);
