@@ -8,8 +8,8 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      gravatarEmail: '',
+      name: 'Equipe-15',
+      gravatarEmail: 'equipe@trybe.com',
       btnEnable: true,
       login: false,
       errors: {},

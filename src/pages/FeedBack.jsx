@@ -34,6 +34,13 @@ class FeedBack extends Component {
         </section>
         <button
           type="button"
+          data-testid="btn-ranking"
+          onClick={ () => history.replace('/ranking') }
+        >
+          Ver Ranking
+        </button>
+        <button
+          type="button"
           data-testid="btn-play-again"
           onClick={ () => history.replace('/') }
         >

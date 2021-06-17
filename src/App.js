@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import './App.css';
-import { TriviaGame, Settings, Login, FeedBack } from './pages';
+import { TriviaGame, Settings, Login, FeedBack, Ranking } from './pages';
 
 export default function App() {
   return (
@@ -10,6 +10,7 @@ export default function App() {
       <Route path="/trivia" component={ TriviaGame } />
       <Route path="/settings" component={ Settings } />
       <Route path="/feedback" component={ FeedBack } />
+      <Route path="/ranking" component={ Ranking } />
     </Switch>
   );
 }
