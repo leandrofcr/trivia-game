@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Header from '../components/Header';
+import { resetState } from '../action';
 
 class FeedBack extends Component {
   render() {
-    const { score, assertions, history } = this.props;
+    const { score, assertions, history, reset } = this.props;
 
     const THREE = 3;
 
@@ -42,7 +43,10 @@ class FeedBack extends Component {
         <button
           type="button"
           data-testid="btn-play-again"
-          onClick={ () => history.replace('/') }
+          onClick={ () => {
+            history.replace('/');
+            reset();
+          } }
         >
           Jogar novamente
         </button>
@@ -56,10 +60,15 @@ const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  reset: () => dispatch(resetState()),
+});
+
 FeedBack.propTypes = {
   score: PropTypes.number.isRequired,
   assertions: PropTypes.arrayOf(PropTypes.shape).isRequired,
   history: PropTypes.shape.isRequired,
+  reset: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(FeedBack);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedBack);

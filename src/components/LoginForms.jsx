@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getPLayerInfo, getTokenAPI } from '../action';
+import { getPlayerInfo, getTokenAPI } from '../action';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'Equipe-15',
-      gravatarEmail: 'equipe@trybe.com',
+      name: '',
+      gravatarEmail: '',
       btnEnable: true,
       login: false,
       errors: {},
@@ -24,14 +24,16 @@ class Login extends Component {
     const { savePlayerInfo } = this.props;
     const { name, gravatarEmail } = this.state;
     savePlayerInfo({ name, gravatarEmail });
+
+    if (localStorage.getItem('ranking') === null) {
+      localStorage.setItem('ranking', JSON.stringify([]));
+    }
+
+    // const ranking = JSON.parse(localStorage.getItem('ranking'));
+    // const check = ranking.filter((player) => player.gravatarEmail !== gravatarEmail);
+    // localStorage.setItem('ranking', JSON.stringify(check));
   }
 
-  // verifyLogin() {
-  //   const { name, gravatarEmail } = this.state;
-  //   if (name.length > 0 && gravatarEmail.length > 0) {
-  //     this.setState({ btnEnable: false });
-  //   }
-  // }
   verifyLogin() {
     const { name, gravatarEmail } = this.state;
     const errors = {};
@@ -127,7 +129,7 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   getTokenData: () => dispatch(getTokenAPI()),
-  savePlayerInfo: (value) => dispatch(getPLayerInfo(value)),
+  savePlayerInfo: (value) => dispatch(getPlayerInfo(value)),
 });
 
 const mapStateToProps = (state) => ({

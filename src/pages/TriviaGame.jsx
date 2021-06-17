@@ -97,9 +97,17 @@ class TriviaGame extends Component {
   }
 
   render() {
-    const { questions } = this.props;
+    const { questions, score, name, urlAvatar, gravatarEmail } = this.props;
     const { wasAnswered, questionIndex } = this.state;
     if (questionIndex > FOUR) {
+      const ranking = JSON.parse(localStorage.getItem('ranking'));
+      ranking.push({
+        name,
+        score,
+        picture: urlAvatar,
+        gravatarEmail,
+      });
+      localStorage.setItem('ranking', JSON.stringify(ranking));
       return <Redirect to="/feedback" />;
     }
 
@@ -144,6 +152,9 @@ const mapStateToProps = (state) => ({
   timeLeft: state.player.timeLeft,
   assertions: state.player.assertions,
   score: state.player.score,
+  name: state.player.name,
+  urlAvatar: state.player.urlAvatar,
+  gravatarEmail: state.player.gravatarEmail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

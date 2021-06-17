@@ -39,7 +39,6 @@ class Timer extends Component {
       this.stopTimer();
       disableButtons();
     }
-    console.log(wasAnswered);
 
     updateSeconds(seconds);
 

@@ -5,6 +5,7 @@ import {
   UPDATE_SCORE,
   UPDATE_TIME,
   UPDATE_ASSERTIONS,
+  SAVE_AVATAR,
 } from '../action';
 
 const INITIAL_STATE = {
@@ -16,6 +17,7 @@ const INITIAL_STATE = {
   assertions: 0,
   isQuestions: false,
   timeLeft: 0,
+  urlAvatar: '',
 };
 
 function player(state = INITIAL_STATE, { type, payload }) {
@@ -32,8 +34,10 @@ function player(state = INITIAL_STATE, { type, payload }) {
     return { ...state, score: payload };
   case UPDATE_ASSERTIONS:
     return { ...state, assertions: state.assertions + payload };
+  case SAVE_AVATAR:
+    return { ...state, urlAvatar: payload };
   default:
-    return state;
+    return INITIAL_STATE;
   }
 }
 
