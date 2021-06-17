@@ -7,6 +7,7 @@ export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const UPDATE_TIME = 'UPDATE_TIME';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const UPDATE_ASSERTIONS = 'UPDATE_ASSERTIONS';
+export const UPDATE_GAMEOVER = 'UPDATE_GAMEOVER';
 
 const NUM_OF_QUESTIONS = 5;
 
@@ -51,7 +52,7 @@ export const getTokenAPI = () => async (dispatch) => {
   const playerData = {
     player: {
       score: 0,
-      assertions: [],
+      assertions: 0,
     },
   };
   localStorage.setItem('state', JSON.stringify(playerData));

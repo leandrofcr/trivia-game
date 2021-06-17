@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   token: '',
   score: 0,
   questions: [],
-  assertions: [],
+  assertions: 0,
   isQuestions: false,
   timeLeft: 0,
 };
@@ -31,7 +31,7 @@ function player(state = INITIAL_STATE, { type, payload }) {
   case UPDATE_SCORE:
     return { ...state, score: payload };
   case UPDATE_ASSERTIONS:
-    return { ...state, assertions: [...state.assertions, payload] };
+    return { ...state, assertions: state.assertions + payload };
   default:
     return state;
   }

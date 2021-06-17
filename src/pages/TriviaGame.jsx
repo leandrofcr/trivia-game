@@ -27,6 +27,17 @@ class TriviaGame extends Component {
     this.sumScore = this.sumScore.bind(this);
   }
 
+  componentDidUpdate() {
+    const { assertions, score } = this.props;
+    const playerData = {
+      player: {
+        score,
+        assertions,
+      },
+    };
+    localStorage.setItem('state', JSON.stringify(playerData));
+  }
+
   showColoredBorders() {
     this.setState({ wasAnswered: true });
   }
@@ -41,12 +52,7 @@ class TriviaGame extends Component {
     const amountScore = getStorage.player.score;
 
     const currScore = amountScore + TEN + (secs * difficultyScore[diff]);
-    const playerData = {
-      player: {
-        score: currScore,
-      },
-    };
-    localStorage.setItem('state', JSON.stringify(playerData));
+
     uptadePlayerScore(currScore);
   }
 
@@ -64,7 +70,7 @@ class TriviaGame extends Component {
         onClick={ () => {
           this.showColoredBorders();
           this.sumScore(timeLeft, questions[questionIndex].difficulty);
-          updatePlayerAssertions(questions[questionIndex].question);
+          updatePlayerAssertions(1);
         } }
       >
         {questions[questionIndex].correct_answer}
@@ -136,17 +142,19 @@ const mapStateToProps = (state) => ({
   questions: state.player.questions,
   renderQuestions: state.player.renderQuestions,
   timeLeft: state.player.timeLeft,
+  assertions: state.player.assertions,
+  score: state.player.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   uptadePlayerScore: (value) => dispatch(updateScore(value)),
-  updatePlayerAssertions: (question) => dispatch(updateAssertions(question)),
+  updatePlayerAssertions: (payload) => dispatch(updateAssertions(payload)),
 });
 
 TriviaGame.propTypes = {
   getAssertions: PropTypes.func,
   uptadePlayerScore: PropTypes.func,
-  assertions: PropTypes.arryOf,
+  assertions: PropTypes.number,
 }.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(TriviaGame);

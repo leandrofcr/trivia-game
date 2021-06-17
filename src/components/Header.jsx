@@ -18,8 +18,8 @@ class Header extends Component {
           Player:
           {name}
         </p>
+        <p>Score:</p>
         <p data-testid="header-score">
-          Score:
           {score}
         </p>
       </header>
