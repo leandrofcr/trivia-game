@@ -1,7 +1,34 @@
+body {
+  background-color: rgb(115, 93, 212);
+}
+
 .correct-answer {
-  border: 3px solid rgb(6, 240, 15);
+  background-color: rgb(84, 252, 134);
+  border: 3px solid rgb(84, 252, 135);
+  border-radius: 10px;
+  box-shadow: 0 0.1em 1.5em rgb(53, 53, 53);
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 1em;
+  max-width: 20em;
+  padding: 15px;
+  transition: transform 0.5s;
+  width: 20em;
+
 }
 
 .wrong-answer {
-  border: 3px solid red;
+  background-color: rgb(212, 123, 122);
+  border: 3px solid rgb(212, 123, 122);
+  border-radius: 10px;
+  box-shadow: 0 0.1em 1.5em rgb(53, 53, 53);
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 1em;
+  max-width: 20em;
+  padding: 15px;
+  transition: transform 0.5s;
+  width: 20em;
 }

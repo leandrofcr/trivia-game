@@ -18,17 +18,19 @@ class Login extends Component {
       return <Redirect to="/settings" />;
     }
     return (
-      <section className="login-container">
-        <LoginForms />
-        <button
-          type="button"
-          data-testid="btn-settings"
-          className="settings-btn"
-          onClick={ () => this.setState({ redirectSettings: true }) }
-        >
+      <section className="login">
+        <section className="login-container">
+          <LoginForms />
+          <button
+            type="button"
+            data-testid="btn-settings"
+            className="settings-btn"
+            onClick={ () => this.setState({ redirectSettings: true }) }
+          >
 
-          <FiSettings />
-        </button>
+            <FiSettings />
+          </button>
+        </section>
       </section>
 
     );

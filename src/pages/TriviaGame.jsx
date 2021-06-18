@@ -61,7 +61,7 @@ class TriviaGame extends Component {
   renderBtnCorrectAnswer() {
     const { questions, timeLeft, updatePlayerAssertions } = this.props;
     const { isDisable, wasAnswered, questionIndex } = this.state;
-    const correctAnswer = wasAnswered && 'correct-answer';
+    const correctAnswer = wasAnswered ? 'correct-answer' : 'btn-alternative';
 
     return (
       <button
@@ -82,7 +82,7 @@ class TriviaGame extends Component {
   renderBtnWrongAnswer() {
     const { questions } = this.props;
     const { isDisable, wasAnswered, questionIndex } = this.state;
-    const wrongAnswer = wasAnswered && 'wrong-answer';
+    const wrongAnswer = wasAnswered ? 'wrong-answer' : ' btn-alternative';
 
     return questions[questionIndex].incorrect_answers.map((elem, index) => (
       <button
@@ -112,38 +112,39 @@ class TriviaGame extends Component {
       localStorage.setItem('ranking', JSON.stringify(ranking));
       return <Redirect to="/feedback" />;
     }
-
     return (
       <>
         <Header />
-        <section>
-          <p data-testid="question-category">
-            {questions[questionIndex].category}
-          </p>
-          <p data-testid="question-text">
-            {questions[questionIndex].question}
-          </p>
-
-          {this.renderBtnCorrectAnswer()}
-
-          {this.renderBtnWrongAnswer()}
+        <section className="main">
+          <section className="question-container">
+            <p data-testid="question-category">
+              {questions[questionIndex].category}
+            </p>
+            <p data-testid="question-text">
+              {questions[questionIndex].question}
+            </p>
+          </section>
+          <section className="alternatives">
+            {this.renderBtnCorrectAnswer()}
+            {this.renderBtnWrongAnswer()}
+          </section>
+          {!wasAnswered && <Timer
+            disableButtons={ this.disableButtons }
+            wasAnswered={ wasAnswered }
+          />}
+          {wasAnswered && (
+            <button
+              type="button"
+              data-testid="btn-next"
+              className="btn-next"
+              onClick={ () => this.setState((prevState) => ({
+                questionIndex: prevState.questionIndex + 1,
+                wasAnswered: false,
+              })) }
+            >
+              Próxima
+            </button>)}
         </section>
-        {!wasAnswered && <Timer
-          disableButtons={ this.disableButtons }
-          wasAnswered={ wasAnswered }
-        />}
-        {wasAnswered && (
-          <button
-            type="button"
-            data-testid="btn-next"
-            onClick={ () => this.setState((prevState) => ({
-              questionIndex: prevState.questionIndex + 1,
-              wasAnswered: false,
-            })) }
-          >
-            Próxima
-          </button>)}
-
       </>
     );
   }
