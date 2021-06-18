@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import LoginForms from '../components/LoginForms';
+import '../login.css';
 
 class Login extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class Login extends Component {
       return <Redirect to="/settings" />;
     }
     return (
-      <section>
+      <section className="login-container">
         <LoginForms />
         <button
           type="button"
