@@ -84,3 +84,21 @@ body {
 .login-container span {
   color: red;
 }
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .settings-btn {
+    animation: settings-btn-spin infinite 20s linear;
+  }
+}
+
+@keyframes settings-btn-spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

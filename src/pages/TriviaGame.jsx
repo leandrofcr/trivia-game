@@ -6,6 +6,8 @@ import Header from '../components/Header';
 import Timer from '../components/Timer';
 import { updateAssertions, updateScore } from '../action';
 
+import '../trivia.css';
+
 const FOUR = 4;
 const TEN = 10;
 const difficultyScore = {

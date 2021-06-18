@@ -23,6 +23,7 @@ class Login extends Component {
         <button
           type="button"
           data-testid="btn-settings"
+          className="settings-btn"
           onClick={ () => this.setState({ redirectSettings: true }) }
         >
 
