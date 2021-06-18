@@ -4,7 +4,7 @@ body {
 
 .correct-answer {
   background-color: rgb(84, 252, 134);
-  border: 3px solid rgb(84, 252, 135);
+  border: 3px solid rgb(6, 240, 15);
   border-radius: 10px;
   box-shadow: 0 0.1em 1.5em rgb(53, 53, 53);
   color: white;
@@ -20,7 +20,7 @@ body {
 
 .wrong-answer {
   background-color: rgb(212, 123, 122);
-  border: 3px solid rgb(212, 123, 122);
+  border: 3px solid red;
   border-radius: 10px;
   box-shadow: 0 0.1em 1.5em rgb(53, 53, 53);
   color: white;
