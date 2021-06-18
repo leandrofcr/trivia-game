@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import { FiSettings } from 'react-icons/fi';
 import LoginForms from '../components/LoginForms';
 import '../login.css';
 
@@ -24,7 +25,8 @@ class Login extends Component {
           data-testid="btn-settings"
           onClick={ () => this.setState({ redirectSettings: true }) }
         >
-          Configurações
+
+          <FiSettings />
         </button>
       </section>
 
