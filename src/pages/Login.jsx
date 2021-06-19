@@ -37,9 +37,9 @@ class Login extends Component {
 
         <Transition
           items={ showComp }
-          from={ { x: 500, opacity: 0, scale: 0.5 } }
-          enter={ { x: 0, opacity: 1, scale: 1 } }
-          leave={ { x: -500, opacity: 0, scale: 0.5 } }
+          from={ { x: 500, opacity: 0 } }
+          enter={ { x: 0, opacity: 1 } }
+          leave={ { x: -500, opacity: 0 } }
           delay={ 200 }
           config={ config.molasses }
         >
