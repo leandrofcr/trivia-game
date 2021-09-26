@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto de Trivia!
+# Boas vindas ao repositório do projeto de [Trivia Game](https://leandrofcr.github.io/trivia-game/)!
 
 
 
