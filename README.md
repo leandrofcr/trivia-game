@@ -1,11 +1,21 @@
 # Boas vindas ao repositório do projeto de Trivia!
 
 
----
+
+## O que foi desenvolvido
+
+O projeto Trivia Game é  um jogo de perguntas e respostas baseado no jogo **Trivia** _(tipo um show do milhão americano rs)_ utilizando _React e Redux_, desenvolvido em grupo suas funcionalidades de acordo com as demanas definidas em um quadro _Kanban_. A aplicação conta com as seguintes funcionalidades:
+
+  - Logar no jogo e, se o email tiver cadastro no site [Gravatar](https://pt.gravatar.com/), ter sua foto associada ao perfil de usuária.
+  - Acessar a página referente ao jogo, onde se deverá escolher uma das respostas disponíveis para cada uma das perguntas apresentadas. A resposta deve ser marcada antes do contador de tempo chegar a zero, caso contrário a resposta deverá ser considerada errada.
+  - Ser redirecionada, após 5 perguntas respondidas, para a tela de score, onde o texto mostrado depende do número de acertos.
+  - Visualizar a página de ranking, se quiser, ao final de cada jogo.
+  - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
+
 
 # Habilidades
 
-Nesse projeto, você será capaz de:
+Nesse projeto, as seguintes habilidades foram trabalhadas:
 
   - Criar um store Redux em aplicações React
 
@@ -20,17 +30,6 @@ Nesse projeto, você será capaz de:
   - Criar actions assíncronas na sua aplicação React que faz uso de Redux.
 
 ---
-
-## O que deverá ser desenvolvido
-
-O projeto Trivia Game é  um jogo de perguntas e respostas baseado no jogo **Trivia** _(tipo um show do milhão americano rs)_ utilizando _React e Redux_, desenvolvido em grupo suas funcionalidades de acordo com as demanas definidas em um quadro _Kanban_. A aplicação conta com as seguintes funcionalidades:
-
-  - Logar no jogo e, se o email tiver cadastro no site [Gravatar](https://pt.gravatar.com/), ter sua foto associada ao perfil de usuária.
-  - Acessar a página referente ao jogo, onde se deverá escolher uma das respostas disponíveis para cada uma das perguntas apresentadas. A resposta deve ser marcada antes do contador de tempo chegar a zero, caso contrário a resposta deverá ser considerada errada.
-  - Ser redirecionada, após 5 perguntas respondidas, para a tela de score, onde o texto mostrado depende do número de acertos.
-  - Visualizar a página de ranking, se quiser, ao final de cada jogo.
-  - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
-
 
 
 # Instruções para clonar o projeto:
@@ -49,7 +48,7 @@ O projeto Trivia Game é  um jogo de perguntas e respostas baseado no jogo **Tri
 
 ### Linter
 
-Para garantir a qualidade do seu código de forma a tê-lo mais legível, de mais fácil manutenção e seguindo as boas práticas de desenvolvimento nós utilizamos neste projeto o linter `ESLint` e `StyleLint`. Para rodar o linter localmente no seu projeto, execute os comandos abaixo:
+Para garantir a qualidade do código de forma a tê-lo mais legível, de mais fácil manutenção e seguindo as boas práticas de desenvolvimento nós utilizamos neste projeto o linter `ESLint` e `StyleLint`. Para rodar o linter localmente no seu projeto, execute os comandos abaixo:
 
 ```bash
 npm run lint
@@ -60,13 +59,13 @@ npm run lint:styles
 
 ### Execução de testes de requisito
 
-Os testes deste projeto foram feitos utilizando o [Cypress](https://www.cypress.io/how-it-works/). É utilizada nos testes a resolução `1366 x 768` (1366 pixels de largura por 768 pixels de altura) para testes de layout. Logo, recomenda-se desenvolver seu projeto usando a mesma resolução, via instalação [deste plugin](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en) do `Chrome` para facilitar a configuração dessa resolução, por exemplo.
+Os testes deste projeto foram feitos utilizando o [Cypress](https://www.cypress.io/how-it-works/). É utilizada nos testes a resolução `1366 x 768` (1366 pixels de largura por 768 pixels de altura) para testes de layout.
 
-É possível testar isso local rodando `npm run cy`. Esse comando roda a suite de testes do Cypress que valida se o fluxo geral e os requisitos funcionais estão funcionando como deveriam. Você pode também executar o comando `npm run cy:open` para ter um resultado visual dos testes executados.
+É possível testar isso localmente rodando `npm run cy`. Esse comando roda a suite de testes do Cypress que valida se o fluxo geral e os requisitos funcionais estão funcionando como deveriam. Você pode também executar o comando `npm run cy:open` para ter um resultado visual dos testes executados.
 
 Esses testes não consideram o layout de maneira geral, mas sim os atributos e informações corretas, então preste atenção nisso! Os testes te darão uma mensagem de erro caso não estejam passando (seja qual for o motivo). 😉
 
-**Atenção:** Sua aplicação deve estar rodando para o Cypress no terminal poder testar.
+**Atenção:** A aplicação deve estar rodando para o Cypress no terminal poder testar.
 
 ---
 
@@ -83,7 +82,7 @@ Primeiro, é necessário fazer um GET request para:
 https://opentdb.com/api_token.php?command=request
 ```
 
-Esse endpoint te retornará o token que vai ser utilizado nas requisições seguintes. A resposta dele será:
+Esse endpoint retornará o token que vai ser utilizado nas requisições seguintes. A resposta dele será:
 
 ```
 {
@@ -93,7 +92,7 @@ Esse endpoint te retornará o token que vai ser utilizado nas requisições segu
 }
 ```
 
-Paga pegar as perguntas, você deve realizar um GET request para o seguinte endpoint:
+Paga pegar as perguntas, é necessário realizar um GET request para o seguinte endpoint:
 
 ```
 https://opentdb.com/api.php?amount=${quantidade-de-perguntas-retornadas}&token=${seu-token-aqui}
@@ -101,8 +100,6 @@ https://opentdb.com/api.php?amount=${quantidade-de-perguntas-retornadas}&token=$
 // Recomendação
 https://opentdb.com/api.php?amount=5&token=${seu-token-aqui}
 ```
-
-*Recomendamos pedir 5 perguntas de uma vez e controlar a disposição delas no código. Essa API te retorna as perguntas no seguinte formato:
 
 ```
 // Pergunta de múltipla escolha
@@ -143,14 +140,7 @@ https://opentdb.com/api.php?amount=5&token=${seu-token-aqui}
    ]
 }
 ```
-O token expira em 6 horas e te retornará um `response_code: 3` caso esteja expirado. **Atenção para que seu código contemple isso!** Caso o token seja inválido, essa será a resposta da API:
 
-```
-{
-   "response_code":3,
-   "results":[]
-}
-```
 
 ---
 
@@ -158,7 +148,7 @@ O token expira em 6 horas e te retornará um `response_code: 3` caso esteja expi
 
 O Gravatar é um serviço que permite deixar o avatar global a partir do email cadastrado, ele mostra sua foto cadastrada em qualquer site vinculado. Na tela de **Inicio**, a pessoa que joga pode colocar um e-mail que deve fazer uma consulta a API do [Gravatar](https://br.gravatar.com/site/implement/images/).
 
-A Implementação é feita baseada no e-mail. Esse email deve ser transformado em uma hash `MD5` (https://br.gravatar.com/site/implement/hash/). Para gerar tal hash, recomendamos utilizar o [CryptoJs](https://github.com/brix/crypto-js).
+A Implementação é feita baseada no e-mail. Esse email deve ser transformado em uma hash `MD5` (https://br.gravatar.com/site/implement/hash/). Para gerar tal hash,  utilizamos o [CryptoJs](https://github.com/brix/crypto-js).
 
 Por exemplo:
   - Garantida a instalação do CryptoJS no projeto, importe o MD5:
@@ -187,7 +177,7 @@ https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50
 
 ### Observações técnicas
 
-Algumas coisas devem seguir um padrão pré-estabelecido para que os teste de correção funcionem corretamente.
+Algumas coisas devem seguir um padrão pré-estabelecido para que os teste funcionem corretamente.
 
 **Player**
 
