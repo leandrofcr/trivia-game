@@ -92,7 +92,7 @@ Esse endpoint retornará o token que vai ser utilizado nas requisições seguint
 }
 ```
 
-Paga pegar as perguntas, é necessário realizar um GET request para o seguinte endpoint:
+Para pegar as perguntas, é necessário realizar um GET request para o seguinte endpoint:
 
 ```
 https://opentdb.com/api.php?amount=${quantidade-de-perguntas-retornadas}&token=${seu-token-aqui}
