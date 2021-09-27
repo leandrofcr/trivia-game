@@ -5,7 +5,7 @@
 
 The Trivia Game project is a quiz game based on a quiz game using React and Redux, developed in group its functionalities according to the demands defined in a Kanban board. The application has the following recommendations:
 
-   - Log in to the game and, if the e-mail is registered on the [Gravatar] website (https://pt.gravatar.com/), have your photo associated with the user's profile.
+   - Log in to the game and, if the e-mail is registered on the [Gravatar](https://pt.gravatar.com/) website, have your photo associated with the user's profile.
    - Go to the page referring to the game, where you must choose one of the answers available for each of the requested questions. The answer must be timed before the timer reaches zero, otherwise the answer must be considered wrong.
    - Be redirected, after 5 questions answered, to a scoring screen, where the text contained depends on the number of correct answers.
    - See a leaderboard page, if you like, at the end of each game.
