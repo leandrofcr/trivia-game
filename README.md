@@ -1,54 +1,54 @@
-# Boas vindas ao repositório do projeto de [Trivia Game](https://leandrofcr.github.io/trivia-game/)!
+# Welcome to the [Trivia Game](https://leandrofcr.github.io/trivia-game/) project repository !
 
 
+## What was developed
 
-## O que foi desenvolvido
+The Trivia Game project is a quiz game based on a quiz game using React and Redux, developed in group its functionalities according to the demands defined in a Kanban board. The application has the following recommendations:
 
-O projeto Trivia Game é  um jogo de perguntas e respostas baseado no jogo **Trivia** _(tipo um show do milhão americano rs)_ utilizando _React e Redux_, desenvolvido em grupo suas funcionalidades de acordo com as demanas definidas em um quadro _Kanban_. A aplicação conta com as seguintes funcionalidades:
-
-  - Logar no jogo e, se o email tiver cadastro no site [Gravatar](https://pt.gravatar.com/), ter sua foto associada ao perfil de usuária.
-  - Acessar a página referente ao jogo, onde se deverá escolher uma das respostas disponíveis para cada uma das perguntas apresentadas. A resposta deve ser marcada antes do contador de tempo chegar a zero, caso contrário a resposta deverá ser considerada errada.
-  - Ser redirecionada, após 5 perguntas respondidas, para a tela de score, onde o texto mostrado depende do número de acertos.
-  - Visualizar a página de ranking, se quiser, ao final de cada jogo.
-  - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
+   - Log in to the game and, if the e-mail is registered on the [Gravatar] website (https://pt.gravatar.com/), have your photo associated with the user's profile.
+   - Go to the page referring to the game, where you must choose one of the answers available for each of the requested questions. The answer must be timed before the timer reaches zero, otherwise the answer must be considered wrong.
+   - Be redirected, after 5 questions answered, to a scoring screen, where the text contained depends on the number of correct answers.
+   - See a leaderboard page, if you like, at the end of each game.
+   - Configure some options for the game in a configuration screen accessible from the app header.
 
 
-# Habilidades
+# Skills
 
-Nesse projeto, as seguintes habilidades foram trabalhadas:
+In this project, the following skills were worked on:
 
-  - Criar um store Redux em aplicações React
+    - Create a Redux store in React Applications
 
-  - Criar reducers no Redux em aplicações React
+    - Create reducers in Redux in React applications
 
-  - Criar actions no Redux em aplicações React
+    - Create actions in Redux in React applications
 
-  - Criar dispatchers no Redux em aplicações React
+    - Create dispatchers in Redux in React applications
 
-  - Conectar Redux aos componentes React
+    - Connect Redux to React components
 
-  - Criar actions assíncronas na sua aplicação React que faz uso de Redux.
+    - Create asynchronous actions in your React application that uses Redux.
 
 ---
 
 
-# Instruções para clonar o projeto:
+# Instructions for cloning the project:
 
-1. Clone o repositório
+1. Clone the repository
   * `git clone git@github.com:leandrofcr/trivia-game.git`.
-  * Entre na pasta do repositório que você acabou de clonar:
+  * Enter the repository folder you just cloned:
     * `cd trivia-game`
 
-2. Instale as dependências e inicialize o projeto
-  * Instale as dependências:
+
+2. Install dependencies and start the project
+  * Install dependencies:
     * `npm install`
   * Inicialize o projeto:
-    * `npm start` (uma nova página deve abrir no seu navegador com a tela de login do jogo)
+    * `npm start` (a new page should open in your browser with the game login screen)
 
 
 ### Linter
 
-Para garantir a qualidade do código de forma a tê-lo mais legível, de mais fácil manutenção e seguindo as boas práticas de desenvolvimento nós utilizamos neste projeto o linter `ESLint` e `StyleLint`. Para rodar o linter localmente no seu projeto, execute os comandos abaixo:
+To ensure the quality of the code in order to have it more readable, easier to maintain and following good development practices, we used in this project the `ESLint` and `StyleLint` linters. To run or link locally in your project, run the commands below:
 
 ```bash
 npm run lint
@@ -57,32 +57,32 @@ npm run lint:styles
 
 ---
 
-### Execução de testes de requisito
+### Requirement Test Execution
 
-Os testes deste projeto foram feitos utilizando o [Cypress](https://www.cypress.io/how-it-works/). É utilizada nos testes a resolução `1366 x 768` (1366 pixels de largura por 768 pixels de altura) para testes de layout.
+Project testing was done using [Cypress] (https://www.cypress.io/how-it-works/). The `1366 x 768` resolution (1366 pixels wide by 768 pixels high) is used for the layout tests.
 
-É possível testar isso localmente rodando `npm run cy`. Esse comando roda a suite de testes do Cypress que valida se o fluxo geral e os requisitos funcionais estão funcionando como deveriam. Você pode também executar o comando `npm run cy:open` para ter um resultado visual dos testes executados.
+You can test this locally by running `npm run cy`. This command runs a set of Cypress tests that validate that the overall flow and defined requirements are working as directed. You can also run the command `npm run cy:open` to get a visual result of the search tests.
 
-Esses testes não consideram o layout de maneira geral, mas sim os atributos e informações corretas, então preste atenção nisso! Os testes te darão uma mensagem de erro caso não estejam passando (seja qual for o motivo). 😉
+These tests don't consider the overall layout, but the correct attributes and information, so pay attention to that! Tests will give you an error message if not passed (for whatever reason). 😉
 
-**Atenção:** A aplicação deve estar rodando para o Cypress no terminal poder testar.
+** Attention: ** The application must be running for Cypress in the terminal to be able to test.
 
 ---
 
-### API de Trivia
+### Trivia API
 
-A [API do Trivia](https://opentdb.com/api_config.php) é bem simples. Temos 2 endpoints que precisamos utilizar para esta aplicação.
+The [Trivia API] (https://opentdb.com/api_config.php) is pretty simple. We have 2 endpoints you need to use for this application.
 
-* **Pegar o token de sessão da pessoa que está jogando**
-* **Pegar perguntas e respostas**
+* ** Get the session token of the person who is playing **
+* ** Catch questions and answers **
 
-Primeiro, é necessário fazer um GET request para:
+First, you need to make a GET request to:
 
 ```
 https://opentdb.com/api_token.php?command=request
 ```
 
-Esse endpoint retornará o token que vai ser utilizado nas requisições seguintes. A resposta dele será:
+This endpoint will return the token that will be used in the following requests. His answer will be:
 
 ```
 {
@@ -92,12 +92,12 @@ Esse endpoint retornará o token que vai ser utilizado nas requisições seguint
 }
 ```
 
-Para pegar as perguntas, é necessário realizar um GET request para o seguinte endpoint:
+To get the questions, you need to make a GET request to the following endpoint:
 
 ```
 https://opentdb.com/api.php?amount=${quantidade-de-perguntas-retornadas}&token=${seu-token-aqui}
 
-// Recomendação
+// Recomendation
 https://opentdb.com/api.php?amount=5&token=${seu-token-aqui}
 ```
 
@@ -123,7 +123,7 @@ https://opentdb.com/api.php?amount=5&token=${seu-token-aqui}
 ```
 
 ```
-// Pergunta de verdadeiro ou falso
+// True or false question
 {
    "response_code":0,
    "results":[
@@ -146,69 +146,30 @@ https://opentdb.com/api.php?amount=5&token=${seu-token-aqui}
 
 ### Gravatar
 
-O Gravatar é um serviço que permite deixar o avatar global a partir do email cadastrado, ele mostra sua foto cadastrada em qualquer site vinculado. Na tela de **Inicio**, a pessoa que joga pode colocar um e-mail que deve fazer uma consulta a API do [Gravatar](https://br.gravatar.com/site/implement/images/).
+Gravatar is a service that allows you to leave the global avatar from the registered email, it shows your registered photo on any linked site. In the screen of ** Home **, a person who plays can put an email that must make a query to the API of [Gravatar] (https://br.gravatar.com/site/implement/images/).
 
-A Implementação é feita baseada no e-mail. Esse email deve ser transformado em uma hash `MD5` (https://br.gravatar.com/site/implement/hash/). Para gerar tal hash,  utilizamos o [CryptoJs](https://github.com/brix/crypto-js).
+Deployment is based on email. This email must be transformed into a `MD5 hash` (https://br.gravatar.com/site/implement/hash/). To generate such a hash, we use [CryptoJs] (https://github.com/brix/crypto-js).
 
-Por exemplo:
-  - Garantida a instalação do CryptoJS no projeto, importe o MD5:
+For example:
+    - Guaranteed the installation of CryptoJS in the project, important for MD5:
     `import md5 from 'crypto-js/md5';`
 
-  - Converta o email do usuário:
+- Convert user email:
     `md5(emailDoUsuário).toString();`
 
-**Atenção:** Precisamos utilizar o `toString()` ao final da conversão.
-
-Após a geração da hash, basta adicionar o valor gerado no final da URL:
+After generating the hash, just add the generated value to the final URL:
 
 ```
-// Formato de URL necessário:
-https://www.gravatar.com/avatar/${hash-gerada}
+// Required URL format:
+https://www.gravatar.com/avatar/${hash-generated}
 
-// Exemplo de URL com hash de uma pessoa
+// Example of a person's hashed URL
 https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50
 
-// Exemplo de imagem exibida com a URL
-<img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
+// Sample image displayed with a URL
+<img src = "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
 
 ```
----
-
-
-### Observações técnicas
-
-Algumas coisas devem seguir um padrão pré-estabelecido para que os teste funcionem corretamente.
-
-**Player**
-
-No `localStorage` do navegador:
-* A chave `state` deve conter a seguinte estrutura:
-```
-player: {
-    name,
-    assertions,
-    score,
-    gravatarEmail
-}
-```
-
-> `name` é o nome da pessoa que joga
->
-> `assertions` é o número de acertos
->
-> `score` é a pontuação
->
-> `gravatarEmail` é o email da pessoa que joga
-
-* A chave `ranking` deve conter a seguinte estrutura:
-```
-[
-  { name: nome-da-pessoa, score: 10, picture: url-da-foto-no-gravatar }
-]
-```
-
-* A chave `token` deve conter o valor do token recebido na API do Trivia.
-
 ---
 
 
