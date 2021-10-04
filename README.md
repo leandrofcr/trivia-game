@@ -71,7 +71,7 @@ These tests don't consider the overall layout, but the correct attributes and in
 
 ### Trivia API
 
-The [Trivia API] (https://opentdb.com/api_config.php) is pretty simple. We have 2 endpoints you need to use for this application.
+The [Trivia API](https://opentdb.com/api_config.php) is pretty simple. We have 2 endpoints you need to use for this application.
 
 * ** Get the session token of the person who is playing **
 * ** Catch questions and answers **
